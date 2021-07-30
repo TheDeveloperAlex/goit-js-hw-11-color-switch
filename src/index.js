@@ -26,19 +26,39 @@ startBtnNode.style.marginRight = "20px";
 
 
 const bodyNode = document.body;
-let id = null;
+let interval;
 // bodyNode.classList.add('color');
 
-const panelNode = document.querySelector('#panel');
-  panelNode.addEventListener('click', e => {
-    // console.log(e.target);
-    if (e.target.tagName !== 'BUTTON') return false;
-    if (e.target === startBtnNode) {
-      id = setInterval(() => {
+// // const panelNode = document.querySelector('#panel');
+//   // panelNode.addEventListener('click', e => {
+//     // console.log(e.target);
+//     if (e.target.tagName !== 'BUTTON') return false;
+//     if (e.target === startBtnNode) {
+//       // bodyNode.classList.add('isActive');
+//       id = setInterval(() => {
+//         bodyNode.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length)];
+//         }, 1000); 
+//     }
+//       // if (bodyNode.classList.contains('isActive')) {
+        
+//         // startBtnNode.disabled = false;
+//       // }
+      
+//     if (e.target === stopBtnNode) {
+//       // bodyNode.classList.remove('isActive');
+//       clearInterval(id);
+//     }
+// });
+
+
+startBtnNode.addEventListener('click', e => {
+  interval = setInterval(() => {
         bodyNode.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length)];
-      }, 1000);
-    }
-    if (e.target === stopBtnNode) {
-      clearInterval(id);
-    }
+  }, 1000);
+  startBtnNode.disabled = true;
+});
+
+stopBtnNode.addEventListener('click', e => {
+  clearInterval(interval);
+  startBtnNode.disabled = false;
 });
